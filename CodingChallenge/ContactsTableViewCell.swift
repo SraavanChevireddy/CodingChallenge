@@ -69,8 +69,8 @@ class ContactsTableViewCell : UITableViewCell{
         baseView.fillWithMasterView(withPadding: .init(top: 10, left: 10, bottom: 10, right: 10))
         
         [profileImage, lbl_title].forEach({baseView.addSubview($0)})
-        profileImage.setupAutoAnchors(top: baseView.topAnchor, leading: baseView.leadingAnchor, bottom: nil, trailing: nil, withPadding: .init(top: 5, left: 5, bottom: 5, right: 5), size: .init(width: 60, height: 60))
-        lbl_title.setupAutoAnchors(top: nil, leading: profileImage.trailingAnchor, bottom: baseView.bottomAnchor, trailing: baseView.trailingAnchor, withPadding: .init(top: 0, left: 20, bottom: 0, right: 10), size: .zero)
+        profileImage.setupAutoAnchors(top: baseView.topAnchor, leading: baseView.leadingAnchor, bottom: baseView.bottomAnchor, trailing: nil, withPadding: .init(top: 5, left: 5, bottom: 5, right: 5), size: .init(width: 60, height: 60))
+        lbl_title.setupAutoAnchors(top: nil, leading: profileImage.trailingAnchor, bottom: nil, trailing: baseView.trailingAnchor, withPadding: .init(top: 0, left: 20, bottom: 0, right: 10), size: .zero)
         lbl_title.centerYAnchor.constraint(equalTo: profileImage.centerYAnchor).isActive = true
     }
 }

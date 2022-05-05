@@ -101,4 +101,7 @@ extension UIViewController{
 
 enum NetworkError: Error{
     case sourceNotFound
+    case unableToDecode
+    case unknown
+    case serviceUnavailable
 }

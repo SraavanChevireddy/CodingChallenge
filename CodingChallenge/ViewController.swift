@@ -38,36 +38,42 @@ class ViewController: UITableViewController {
         ary_contacts = Array()
         ary_searchContacts = Array()
         
+        let group = DispatchGroup()
         for _ in 0..<100{
-            fetchContacts { result in
+            group.enter()
+            fetchContacts(onGroup: group){ [unowned self] result in
                 switch result{
                 case .success(let response):
-                    print("You got")
-                    DispatchQueue.main.async { [weak self] in
-                        if let self = self{
-                            self.ary_contacts.append(response)
-                            self.tableView.reloadData()
-                        }
+                    self.ary_contacts.append(response)
+                    group.notify(queue: .main) { [weak self] in
+                        self?.tableView.reloadData()
                     }
                 case .failure(let err):
                     print(err)
+                    group.leave()
                 }
             }
         }
+        
     }
     
-    private func fetchContacts(completion: @escaping(Result<ContactsListModel, NetworkError>)->Void){
+    private func fetchContacts(onGroup: DispatchGroup, completion: @escaping(Result<ContactsListModel, NetworkError>)->Void){
         guard let urlForContacts = URL(string: "https://randomuser.me/api/") else{completion(.failure(.sourceNotFound)); return}
         let session = URLSession(configuration: .ephemeral)
         session.dataTask(with: urlForContacts) { data, response, error in
             if let responseCode = response as? HTTPURLResponse{
                 if responseCode.statusCode == 200{
-                    if let decoder = try? JSONDecoder().decode(ContactsListModel.self, from: data!){
-                        print("Done")
-                        completion(.success(decoder))
+                    if let data = data {
+                        if let decoder = try? JSONDecoder().decode(ContactsListModel.self, from: data){
+                            completion(.success(decoder))
+                            onGroup.leave()
+                        }else{
+                            completion(.failure(.unableToDecode))
+                        }
                     }
                 }else{
                     print("\(responseCode.statusCode)")
+                    completion(.failure(.serviceUnavailable))
                 }
             }
         }.resume()
@@ -87,7 +93,11 @@ extension ViewController{
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 80
+        return UITableView.automaticDimension
+    }
+    
+    override func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableView.automaticDimension
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
