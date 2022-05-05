@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3C68A63E28244FF70064B772 /* BasicInfoCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C68A63D28244FF70064B772 /* BasicInfoCardView.swift */; };
 		3CBE6BBE2823C83D0020FE22 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CBE6BBD2823C83D0020FE22 /* AppDelegate.swift */; };
 		3CBE6BC02823C83D0020FE22 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CBE6BBF2823C83D0020FE22 /* SceneDelegate.swift */; };
 		3CBE6BC22823C83D0020FE22 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CBE6BC12823C83D0020FE22 /* ViewController.swift */; };
@@ -20,6 +21,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3C68A63D28244FF70064B772 /* BasicInfoCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicInfoCardView.swift; sourceTree = "<group>"; };
 		3CBE6BBA2823C83D0020FE22 /* CodingChallenge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CodingChallenge.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3CBE6BBD2823C83D0020FE22 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3CBE6BBF2823C83D0020FE22 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -74,6 +76,7 @@
 				3CBE6BD32823C8B20020FE22 /* ContactsTableViewCell.swift */,
 				3CBE6BD52823CC9F0020FE22 /* ContactsListModel.swift */,
 				3CBE6BD72824201E0020FE22 /* ContactsDetailsViewController.swift */,
+				3C68A63D28244FF70064B772 /* BasicInfoCardView.swift */,
 			);
 			path = CodingChallenge;
 			sourceTree = "<group>";
@@ -159,6 +162,7 @@
 				3CBE6BBE2823C83D0020FE22 /* AppDelegate.swift in Sources */,
 				3CBE6BD42823C8B20020FE22 /* ContactsTableViewCell.swift in Sources */,
 				3CBE6BD82824201E0020FE22 /* ContactsDetailsViewController.swift in Sources */,
+				3C68A63E28244FF70064B772 /* BasicInfoCardView.swift in Sources */,
 				3CBE6BD22823C87B0020FE22 /* ViewExtension.swift in Sources */,
 				3CBE6BC02823C83D0020FE22 /* SceneDelegate.swift in Sources */,
 			);
