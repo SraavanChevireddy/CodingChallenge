@@ -23,6 +23,13 @@ class ViewController: UITableViewController {
         return modalController
     }
     
+    private var loader: UIActivityIndicatorView{
+        let modalLoader = UIActivityIndicatorView(style: .large)
+        modalLoader.largeContentTitle = "Loading..."
+        modalLoader.startAnimating()
+        return modalLoader
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.title = "Contacts"
@@ -30,11 +37,12 @@ class ViewController: UITableViewController {
         navigationItem.searchController = searchController
         
         tableView.register(ContactsTableViewCell.self, forCellReuseIdentifier: "cell")
-        fetchAll()
+        navigationItem.titleView = loader
+        fetchContacts()
     }
 
     
-    private func fetchAll(){
+    private func fetchContacts(){
         ary_contacts = Array()
         ary_searchContacts = Array()
         
@@ -46,6 +54,8 @@ class ViewController: UITableViewController {
                 case .success(let response):
                     self.ary_contacts.append(response)
                     group.notify(queue: .main) { [weak self] in
+                        self?.loader.stopAnimating()
+                        self?.navigationItem.titleView = nil
                         self?.tableView.reloadData()
                     }
                 case .failure(let err):
