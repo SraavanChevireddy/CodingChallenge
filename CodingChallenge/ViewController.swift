@@ -122,8 +122,14 @@ extension ViewController: UISearchBarDelegate{
         isSearching = true
         ary_searchContacts = ary_contacts.filter({ searchElement in
             if let firstName = searchElement.results.first?.name.first{
-                if firstName.lowercased().contains(searchText){
+                if firstName.lowercased().prefix(searchText.count) == searchText ||
+                    firstName.prefix(searchText.count) == searchText{
                     return true
+                }else if let lastName = searchElement.results.first?.name.last{
+                    if lastName.lowercased().prefix(searchText.count) == searchText ||
+                        lastName.prefix(searchText.count) == searchText{
+                        return true
+                    }
                 }
             }
             return false
